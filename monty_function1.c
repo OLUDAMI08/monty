@@ -31,7 +31,7 @@ void monty_push(stack_t **stack, unsigned int number)
  *
  * @stack: pointer to the top node of a stack_t linked list
  *
- * @line_number: the current workinh line number of a monty bytecode file
+ * @number: the current workinh line number of a monty bytecode file
  *
  */
 
