@@ -11,6 +11,9 @@ void monty_push(stack_t **stack, unsigned int data)
 
 	new = malloc(sizeof(stack_t));
 
+	if (*stack == NULL)
+		printf("the stack is empty");
+
 	if (new == NULL)
 	{
 		printf("error");
@@ -33,7 +36,7 @@ void monty_push(stack_t **stack, unsigned int data)
 
 void monty_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack
+	stack_t *temp = *stack;
 
 	while (temp)
 	{
