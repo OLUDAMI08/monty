@@ -17,12 +17,15 @@ void monty_push(stack_t **stack, unsigned int data)
 		return;
 	}
 
-	if (stack == NULL)
-                printf("the stack is empty");
-	
 	new->n = data;
 	new->next = *stack;
+	new->prev = 0;
+
+	if (*stack != NULL)
+                (*stack)->prev = new;
+
 	*stack = new;
+
 }
 
 /**
