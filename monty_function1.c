@@ -3,29 +3,26 @@
 /**
  * monty_push - Pushes a value to a stack_t linked list.
  * @stack: A pointer to the top mode node of a stack_t linked list.
- * @data: The current working data of a Monty bytecodes file.
+ * @value: The current working data of a Monty bytecodes file.
  */
-void monty_push(stack_t **stack, unsigned int data)
+
+void push(stack_t **stack, int value)
 {
-	stack_t *new;
+    stack_t *new_node = malloc(sizeof(stack_t));
+    if (new_node == NULL)
+    {
+        fprintf(stderr, "Error: unable to allocate memory for new stack node\n");
+        exit(EXIT_FAILURE);
+    }
 
-	new = malloc(sizeof(stack_t));
+    new_node->n = value;
+    new_node->prev = (*stack);
+    new_node->next = NULL;
 
-	if (new == NULL)
-	{
-		printf("error");
-		return;
-	}
+    if (*stack != NULL)
+        (*stack)->next = new_node;
 
-	new->n = data;
-	new->next = *stack;
-	new->prev = 0;
-
-	if (*stack != NULL)
-                (*stack)->prev = new;
-
-	*stack = new;
-
+    *stack = new_node;
 }
 
 /**
@@ -33,18 +30,18 @@ void monty_push(stack_t **stack, unsigned int data)
  *
  * @stack: pointer to the top node of a stack_t linked list
  *
- * @number: the current workinh line number of a monty bytecode file
+ * @line_number: the current workinh line number of a monty bytecode file
  *
  */
 
-void monty_pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+    stack_t *current = *stack;
 
-	while (temp)
-	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
-	}
-	(void)line_number;
+    while (current != NULL)
+    {
+        printf("%d\n", current->n);
+        current = current->prev;
+    }
 }
+
